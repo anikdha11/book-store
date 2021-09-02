@@ -6,6 +6,7 @@ const loadData = () => {
   const searchText = searchField.value;
   // searchfield clear
   searchField.value = "";
+  //total result handle
   total.style.display = 'none';
   document.getElementById('displaybook').textContent = "";
   errorDiv.innerText = '';
@@ -14,8 +15,8 @@ const loadData = () => {
     errorDiv.innerText = 'Search field can not be empty';
   }
   else {
-     const url = `https://openlibrary.org/search.json?q=${searchText}`;
-       fetch(url)
+    const url = `https://openlibrary.org/search.json?q=${searchText}`;
+    fetch(url)
       .then(res => res.json())
       .then(data => displayShowBook(data.docs))
   }
@@ -24,10 +25,12 @@ const loadData = () => {
 const displayShowBook = books => {
   const displayBook = document.getElementById('displaybook');
   books.forEach(book => {
-    //  console.log(book);
     total.style.display = 'block';
-    errorDiv.innerText = '';
+    // handle empty input
+     errorDiv.innerText = '';
+     //total result handle
     total.innerText = `Total result:${books.length}`;
+    // create div
     const div = document.createElement('div');
     div.classList.add('col', 'w-50', 'shadow-lg');
     div.innerHTML = `
@@ -36,7 +39,7 @@ const displayShowBook = books => {
      <h1 class="card-header bg-dark
       text-light">${book.title}</h1>
      <div class="card-body text-success bg-dark">
-          <h2 class="card-title">${book.author_name[0] ? book.author_name[0] : book.author_name}</h2>
+          <h2 class="card-title">${book.author_name[0] ? book.author_name[0] : 'not avaiable'}</h2>
           <h4 class="card-text">First Publish: ${book.first_publish_year ? book.first_publish_year : 'not avaiable'}</h4>
      </div>
      <h4 class="card-footer bg-dark text-secondary">Publisher: ${book.publisher[0]}</h4>
