@@ -11,7 +11,7 @@ const loadData = () => {
   document.getElementById('displaybook').textContent = "";
   errorDiv.innerText = '';
   //handle empty input
-  if (searchText == "") {
+  if (searchText === "") {
     errorDiv.innerText = 'Search field can not be empty';
   }
   else {
@@ -32,7 +32,7 @@ const displayShowBook = books => {
     total.innerText = `Total result:${books.length}`;
     // create div
     const div = document.createElement('div');
-    div.classList.add('col', 'w-50', 'shadow-lg');
+    div.classList.add('col', 'w-25', 'shadow-lg', 'h-max');
     div.innerHTML = `
      <img src="https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg" class="card-img-top" alt="...">
      <div class="card mb-3 text-center">
