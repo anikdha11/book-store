@@ -10,9 +10,10 @@ const loadData = () => {
   total.style.display = 'none';
   document.getElementById('displaybook').textContent = "";
   errorDiv.innerText = '';
-  //handle empty input
-  if (searchText === "") {
-    errorDiv.innerText = 'Search field can not be empty';
+  //handle empty invaild input
+  if (searchText === "" || searchText === false ) {
+    errorDiv.innerText = 'Please filled it with valid book name';
+    
   }
   else {
     const url = `https://openlibrary.org/search.json?q=${searchText}`;
@@ -45,7 +46,7 @@ const displayShowBook = books => {
      <h4 class="card-footer bg-dark text-secondary">Publisher: ${book.publisher[0]}</h4>
    </div>`
     displayBook.appendChild(div);
-
+    
   })
 }
 
